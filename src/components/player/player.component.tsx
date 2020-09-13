@@ -25,7 +25,7 @@ const PlayerComponent = (props: PlayerProps) => {
 
     return (
         <div className={getClassName()}>
-            <IonBadge color="primary">
+            <IonBadge color={props.cardState.activePlayer === props.player.id ? 'primary' : 'light'}>
                 {props.player.name}
             </IonBadge>
             <div onDrop={(e) => console.log('ondrop', e)}>
