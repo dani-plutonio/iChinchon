@@ -1,0 +1,43 @@
+.ripple-parent {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-card {
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    line-height: 47px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    margin-right: -11px;
+    transition: height 0.25s ease-in-out;
+    &.OROS {
+        background-color: var(--ion-color-warning);
+    }
+    &.ESPADAS {
+        background-color: var(--ion-color-medium);
+    }
+    &.BASTOS {
+        background-color: var(--ion-color-success);
+    }
+    &.COPAS {
+        background-color: var(--ion-color-danger);
+    }
+    &.COMODIN {
+        background-color: var(--ion-color-secondary);
+    }
+    &.cover {
+        background-color: var(--ion-color-light);
+    }
+    &.mount {
+        margin-right: -52px;
+        box-shadow: none;
+    }
+    &.activated {
+        width: 60px;
+        height: 80px;
+    }
+}
