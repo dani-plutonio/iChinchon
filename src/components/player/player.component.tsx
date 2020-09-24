@@ -25,12 +25,12 @@ const PlayerComponent = (props: PlayerProps) => {
 
     return (
         <div className={getClassName()}>
-            <IonBadge color={props.cardState.activePlayer === props.player.id ? 'primary' : 'light'}>
+            <IonBadge color={props.cardState.activePlayer === props.player.id ? 'primary' : 'medium'}>
                 {props.player.name}
             </IonBadge>
-            <div onDrop={(e) => console.log('ondrop', e)}>
+            <div className={'player-draggable-container'}>
                 {props.player.cards.map((card, i) =>
-                    <CardComponent key={i} card={card} />
+                    <CardComponent key={i} card={card} dragCard={true}/>
                 )}
             </div>
         </div>

@@ -1,4 +1,3 @@
-import {IonRippleEffect} from "@ionic/react";
 import React from 'react';
 import '../../theme/styles/cards.scss';
 import {Card} from "../../shared/models/card.model";
@@ -7,13 +6,15 @@ import {CardState} from "../../shared/models/card.state.model";
 import {MapDispatchApp} from "../../shared/models/map.model";
 import {connect} from "react-redux";
 import {mapDispatchApp, mapStateToPropsApp} from "../../shared/maps";
+import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
 
 type CardProps = {
     card: Card,
     cover?: boolean,
     mount?: boolean,
     npc?: boolean,
-    disabled?: boolean
+    disabled?: boolean,
+    dragCard?: boolean
 } & { cardState: CardState } & MapDispatchApp;
 
 const CardComponent = (props: CardProps) => {
@@ -56,10 +57,32 @@ const CardComponent = (props: CardProps) => {
         return className;
     }
 
+    function handlerStop(domEvent: DraggableEvent, dragData: DraggableData) {
+        dragData.node.style.transform = 'translate(0px, 0px)';
+    }
+
+    function handlerStart(domEvent: DraggableEvent, dragData: DraggableData) {
+        dragData.node.style.transform = 'translate(0px, 0px)';
+    }
+
     return (
-        <div className={getClassNameCard()} onClick={(e) => props.setActiveCard(props.card.id)}>
-            {getNumberCard(props.card.number, props.card.type)}
-        </div>
+        props.dragCard
+            ? (
+                <Draggable scale={1}
+                           position={{x: 0, y: 0}}
+                           onStart={handlerStart}
+                           onStop={handlerStop}
+                           onDrag={(e, data) => console.log('onDrag', data)}>
+                    <div className={getClassNameCard()} onClick={(e) => props.setActiveCard(props.card.id)}>
+                        {getNumberCard(props.card.number, props.card.type)}
+                    </div>
+                </Draggable>)
+            : (
+                <div className={getClassNameCard()} onClick={(e) => props.setActiveCard(props.card.id)}>
+                    {getNumberCard(props.card.number, props.card.type)}
+                </div>
+            )
+
     );
 };
 

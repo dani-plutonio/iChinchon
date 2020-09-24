@@ -54,7 +54,7 @@ const PlayerNpcComponent = (props: PlayerNpcProps) => {
 
     return (
         <div className={getClassName()}>
-            <IonBadge color={props.cardState.activePlayer === props.player.id ? 'primary' : 'light'}>
+            <IonBadge color={props.cardState.activePlayer === props.player.id ? 'primary' : 'medium'}>
                 {props.player.name}
             </IonBadge>
             <div>
